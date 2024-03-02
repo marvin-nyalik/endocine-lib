@@ -1,8 +1,9 @@
 import App from "../../App";
 import { render, screen } from '@testing-library/react';
 
-it("Renders correctly..", ()=>{
+it("Renders Books component for the route '/' ", () => {
   render(<App/>);
-  const text = screen.getByText(/Hello/i);
-  expect(text).toBeVisible();
+
+  const booksDiv = screen.getByTestId("books-component");
+  expect(booksDiv).toBeInTheDocument();
 })
