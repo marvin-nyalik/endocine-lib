@@ -1,5 +1,6 @@
 import './App.css'
 import Books from './components/Books';
+import RocketComp from './components/Rockets';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import type { Book, BooksProps } from './lib/types';
 
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Books books={booksData}/>}></Route>
+          <Route path='/rockets' element={<RocketComp />}></Route>
         </Routes>
       </Router>
     </>
