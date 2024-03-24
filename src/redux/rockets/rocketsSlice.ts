@@ -1,8 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { Rocket } from '../../lib/types';
 
 const url = 'https://api.spacexdata.com/v4/rockets';
+
+export type Rocket = {
+  id: string,
+  name: string,
+  country: string,
+  description: string,
+  company: string,
+  flickr_images: string[];
+}
 
 export type State = {
   rockets: Rocket[],
@@ -10,7 +18,7 @@ export type State = {
   loading: boolean;
 }
 
-const initialState: State = {
+export const initialState: State = {
   rockets: [],
   error: undefined,
   loading: false
