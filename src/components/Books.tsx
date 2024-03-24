@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Book, BooksProps } from "../lib/types";
+import { CssBaseline, Typography } from "@mui/material";
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
 const Books = ({ books }: { books: BooksProps }) => {
   const [filter, setFilter] = useState({
@@ -17,7 +19,7 @@ const Books = ({ books }: { books: BooksProps }) => {
   };
 
   useEffect(() => {
-    const filterResult = books.books.filter(book => 
+    const filterResult = books.books.filter(book =>
       book.author.toLowerCase().includes(filter.author.trim().toLowerCase()) &&
       book.category.toLowerCase().includes(filter.category.trim().toLowerCase()) &&
       book.title.toLowerCase().includes(filter.title.trim().toLowerCase()) &&
@@ -54,8 +56,9 @@ const Books = ({ books }: { books: BooksProps }) => {
   }
 
   return (
-    <div data-testid="books-component">
-        <h1 className="text-xl">All Books</h1>
+    <div data-testid="books-component" className="max-w-[90%] mx-auto">
+      <CssBaseline/>
+      <Typography variant="h4" component="h1" className="text-center">All Books</Typography>
         <div className="mx-auto max-w-[90%] flex flex-col justify-start space-x-4 md:flex-row">
         <input type="text" name="author" placeholder="Author" onChange={handleInputChange}
         className="border border-black-700 rounded-xl my-2 px-1" />
@@ -72,18 +75,24 @@ const Books = ({ books }: { books: BooksProps }) => {
             <option value="category">Category</option>
         </select>
         </div>
-        {filteredBooks && filteredBooks.map((book, index) => (
-        <div key={book.title}
-        className="max-w-[90%] flex flex-col space-x-4 space-y-4 my-4 border-b border-b-teal-500 border-pink-500"
-        >
-            <div className="flex flex-col justify-start">
+        {filteredBooks ? (
+          filteredBooks.map((book, index) => (
+            <div key={book.title} className="max-w-[90%] flex flex-col space-x-4 space-y-4 my-4 border-b border-b-teal-500 border-pink-500">
+              <div className="flex flex-col justify-start">
                 <p data-testid={`book-${index}`}>Title: {book.title}</p>
                 <p>Author: {book.author}</p>
                 <p>Year: {book.year}</p>
                 <p>Category: {book.category}</p>
+              </div>
             </div>
-        </div>
-        ))}
+          ))
+        ) : (
+          <>
+            <CssBaseline/>
+            <Typography variant="h4" component="h1" className="text-center">No Results Found</Typography>
+            <BrokenImageIcon />
+          </>
+        )}
     </div>
   )
 }
