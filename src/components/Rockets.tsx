@@ -1,6 +1,8 @@
 import { RootState, useAppDispatch, useAppSelector } from "../redux/store";
 import { useEffect } from 'react';
 import { fetchRockets } from "../redux/rockets/rocketsSlice";
+import { Typography, CssBaseline } from "@mui/material";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const RocketComp = () => {
   const dispatch = useAppDispatch();
@@ -24,14 +26,17 @@ const RocketComp = () => {
   if (loading) {
     return (
       <div className="flex h-screen w-full justify-center items-center">
+        <CssBaseline/>
         Loading
+        <CircularProgress/>
       </div>
     )
   }
 
   return (
     <>
-      <h1 className="text-xl mx-auto font-semibold">Rockets</h1>
+      <CssBaseline/>
+      <Typography variant="h4" component="h1" className="text-center">Rockets</Typography>
       {rockets && rockets.map(rocket => (
         <div className="flex flex-col space-x-4 space-y-4 my-3 max-w-[80%] mx-auto"
           key={rocket.id} data-testid={rocket.id}>
