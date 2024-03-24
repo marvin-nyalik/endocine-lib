@@ -3,6 +3,7 @@ import Books from './components/Books';
 import RocketComp from './components/Rockets';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import type { Book, BooksProps } from './lib/types';
+import Layout from './components/Layout';
 
 function App() {
   const books: Book[] = [
@@ -19,8 +20,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path='/' element={<Books books={booksData}/>}></Route>
-          <Route path='/rockets' element={<RocketComp />}></Route>
+          <Route path='/' element={<Layout><Books books={booksData}/></Layout>}></Route>
+          <Route path='/rockets' element={<Layout><RocketComp /></Layout>}></Route>
         </Routes>
       </Router>
     </>
