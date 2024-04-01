@@ -2,8 +2,7 @@ import RocketComp from "../../components/Rockets";
 import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
 import store from "../../redux/store";
-import rocketsSlice, { State } from "../../redux/rockets/rocketsSlice";
-import { fetchRockets } from "../../redux/rockets/rocketsSlice";
+import { State } from "../../redux/rockets/rocketsSlice";
 
 const customInitialState: State = {
   rockets: [
